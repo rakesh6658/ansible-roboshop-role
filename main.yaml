@@ -1,5 +1,5 @@
 - name: executing main.yaml
-  hosts: mongodb
+  hosts: "{{component}}"
   become: yes
   roles:
-    - mongodb
+    - "{{component}}"
