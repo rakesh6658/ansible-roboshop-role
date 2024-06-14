@@ -6,24 +6,24 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: setup-app   
-- name: download npm
-  ansible.builtin.shell: npm install 
-  args:
-    chdir: /app
-- name: creating service setup
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: service-setup    
-- name: copying mongo.repo
-  ansible.builtin.copy:
-    src: mongo.repo
-    dest: /etc/yum.repos.d/mongo.repo     
-- name: installing mongodb-org-shell
-  ansible.builtin.yum:
-    name: mongodb-org-shell
-    state: installed   
-- name: loading schema
-  ansible.builtin.shell: mongo --host mongodb.rakeshreddy.online </app/schema/catalogue.js                           
+# - name: download npm
+#   ansible.builtin.shell: npm install 
+#   args:
+#     chdir: /app
+# - name: creating service setup
+#   ansible.builtin.import_role:
+#     name: common
+#     tasks_from: service-setup    
+# - name: copying mongo.repo
+#   ansible.builtin.copy:
+#     src: mongo.repo
+#     dest: /etc/yum.repos.d/mongo.repo     
+# - name: installing mongodb-org-shell
+#   ansible.builtin.yum:
+#     name: mongodb-org-shell
+#     state: installed   
+# - name: loading schema
+#   ansible.builtin.shell: mongo --host mongodb.rakeshreddy.online </app/schema/catalogue.js                           
  
  
  
