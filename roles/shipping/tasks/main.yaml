@@ -10,7 +10,21 @@
   ansible.builtin.command: mvn clean package
   args:
     chdir: /app  
-- name: moving "{{ component }}".jar
-  ansible.builtin.command: mv target/{{ component }}-1.0.jar {{ component }}.jar
+- name: moving shipping.jar
+  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
   args:
-    chdir: /app     
+    chdir: /app 
+- name: creating service setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: service-setup.yaml
+- name: installing mysql
+    ansible.builtin.yum:
+      name: mysql
+      state: installed 
+  - name: loading schema
+    ansible.builtin.shell: mysql -h mysql.rakeshreddy.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
+  - name: restart shipping
+    ansible.builtin.service:
+      name: shipping
+      state: restarted                      
