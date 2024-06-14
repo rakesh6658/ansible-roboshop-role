@@ -10,19 +10,11 @@
   ansible.builtin.command: npm install 
   args:
     chdir: /app 
-- name: copying "{{ component }}".service
-  ansible.builtin.copy:
-    src: "{{ component }}.service"
-    dest: "/etc/systemd/system/{{ component }}.service"
-    remote_src: yes   
-- name: daemon_reload "{{ component }}"
-  ansible.builtin.systemd:
-    daemon_reload: true  
-- name: Start service "{{ component }}", if not started
-  ansible.builtin.service:
-    name: "{{ component }}"
-    state: started  
-    enabled: yes  
+- name: creating service setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: service-setup.yaml    
+
 - name: copying mongo.repo
   ansible.builtin.copy:
     src: mongo.repo
