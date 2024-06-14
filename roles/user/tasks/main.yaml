@@ -10,15 +10,15 @@
   ansible.builtin.command: npm install 
   args:
     chdir: /app 
-- name: copying "{{component}}".service
+- name: copying "{{ component }}".service
   ansible.builtin.copy:
     src: "{{ component }}.service"
-    dest: "/etc/systemd/system/{{component}}.service" 
+    dest: "/etc/systemd/system/{{ component }}.service" 
   remote_src: yes   
-- name: daemon_reload "{{component}}"
+- name: daemon_reload "{{ component }}"
   ansible.builtin.systemd:
     daemon_reload: true  
-- name: Start service "{{component}}", if not started
+- name: Start service "{{ component }}", if not started
   ansible.builtin.service:
     name: "{{ component }}"
     state: started  
