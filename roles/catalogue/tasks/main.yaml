@@ -8,8 +8,8 @@
     tasks_from: setup-app
 - name: download npm
   ansible.builtin.command: npm install 
-    args:
-      chdir: /app 
+  args:
+    chdir: /app 
 - name: copying mongo.repo
   ansible.builtin.copy:
     src: mongo.repo
