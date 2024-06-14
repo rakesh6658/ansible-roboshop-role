@@ -23,4 +23,5 @@
     name: mongodb-org-shell
     state: installed    
 - name: loading schema
-  ansible.builtin.shell: mongo --host mongodb.rakeshreddy.online </app/schema/user.js                   
+  ansible.builtin.shell: mongo --host mongodb.rakeshreddy.online </app/schema/user.js          
+            
