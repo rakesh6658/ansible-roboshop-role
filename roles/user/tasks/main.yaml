@@ -13,7 +13,8 @@
 - name: copying "{{component}}".service
   ansible.builtin.copy:
     src: "{{ component }}.service"
-    dest: "/etc/systemd/system/{{component}}.service"  
+    dest: "/etc/systemd/system/{{component}}.service" 
+  remote_src: yes   
 - name: daemon_reload "{{component}}"
   ansible.builtin.systemd:
     daemon_reload: true  
