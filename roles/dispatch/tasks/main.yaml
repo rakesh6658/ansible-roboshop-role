@@ -1,0 +1,30 @@
+- name: installing golang
+    ansible.builtin.yum:
+      name: golang
+      state: installed
+- name: creating app directory
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: setup-app
+- name: download npm
+    ansible.builtin.command: "{{ item }}"
+    args:
+      chdir: /app
+    loop:
+    - go mod init dispatch
+    - go get 
+    - go build
+- name: copying "{{component}}".service
+  ansible.builtin.copy:
+    src: "{{ component }}.service"
+    dest: "/etc/systemd/system/{{component}}.service"  
+- name: daemon_reload "{{component}}"
+  ansible.builtin.systemd:
+    daemon_reload: true  
+- name: Start service "{{component}}", if not started
+  ansible.builtin.service:
+    name: "{{ component }}"
+    state: started  
+    enabled: yes      
+
+
