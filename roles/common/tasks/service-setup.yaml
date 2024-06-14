@@ -10,13 +10,3 @@
     name: "{{ component }}"
     state: started  
     enabled: yes  
-- name: installing mysql
-    ansible.builtin.yum:
-      name: mysql
-      state: installed 
-  - name: loading schema
-    ansible.builtin.shell: mysql -h mysql.rakeshreddy.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
-  - name: restart shipping
-    ansible.builtin.service:
-      name: shipping
-      state: restarted              
