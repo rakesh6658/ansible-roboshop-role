@@ -7,7 +7,7 @@
     name: common
     tasks_from: setup-app.yaml   
 - name: download npm
-  ansible.builtin.command: npm install 
+  ansible.builtin.shell: npm install 
   args:
     chdir: /app
 - name: creating service setup
