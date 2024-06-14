@@ -1,0 +1,16 @@
+- name: setting up nodejs
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs.yaml
+- name: creating app directory
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: setup-app.yaml
+- name: download npm
+  ansible.builtin.command: npm install 
+  args:
+    chdir: /app 
+- name: copying and starting "{{ component }}"  
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: service-setup.yaml         
