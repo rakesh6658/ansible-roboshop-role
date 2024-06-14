@@ -19,9 +19,9 @@
     name: common
     tasks_from: service-setup.yaml
 - name: installing mysql
-    ansible.builtin.yum:
-      name: mysql
-      state: installed 
+  ansible.builtin.yum:
+    name: mysql
+    state: installed 
   - name: loading schema
     ansible.builtin.shell: mysql -h mysql.rakeshreddy.online -uroot -pRoboShop@1 < /app/schema/shipping.sql 
   - name: restart shipping
