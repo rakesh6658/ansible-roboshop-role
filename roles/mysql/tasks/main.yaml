@@ -1,5 +1,5 @@
 - name: disable mysql8 version
-    ansible.builtin.shell: yum module disable mysql -y 
+  ansible.builtin.shell: yum module disable mysql -y 
 - name: copying mysql.repo
   ansible.builtin.copy:
     src: mysql.repo
