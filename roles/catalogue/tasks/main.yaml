@@ -1,15 +1,19 @@
 - name: setup nodejs
   ansible.builtin.import_role:
     name: common
-    tasks_from: nodejs
+    tasks_from: nodejs.yaml
 - name: create app directory
   ansible.builtin.import_role:
     name: common
-    tasks_from: setup-app
+    tasks_from: setup-app.yaml   
 - name: download npm
   ansible.builtin.command: npm install 
   args:
     chdir: /app
+- name: creating service setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: service-setup.yaml    
 - name: copying mongo.repo
   ansible.builtin.copy:
     src: mongo.repo
